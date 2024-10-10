@@ -4,7 +4,7 @@ on:
     branches:
         -main
     paths:
-        - 'env/dev/**''
+        - 'env/dev/**'
         - 'modules/**'
 
 permissions:
