@@ -54,6 +54,9 @@ jobs:
  
       - name: Terraform format
         run: terraform -chdir=env/dev fmt
+
+      - name: Terraform validate
+        run: terraform -chdir=env/dev validate
  
       - name: Terraform plan
         run: terraform -chdir=env/dev plan
