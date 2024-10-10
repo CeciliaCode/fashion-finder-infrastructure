@@ -39,9 +39,9 @@ jobs:
           chmod 777 ./env/dev/keys/monomap.pub
       
       - name: Terraform setup
-        uses: hashicorp/terraform@v2
+        uses: hashicorp/terraform@v3
         with:
-          terraform_version: 1.9.2
+          terraform_version: 3.0.0
           terraform_wrapper: false
               
       - name: Terraform init
