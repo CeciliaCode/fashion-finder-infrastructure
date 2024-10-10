@@ -24,7 +24,7 @@ module "dev_vm" {
   SUBNET_NAME = var.SUBNET_NAME
 }
 
-resource "azurerm_resource_group" "prueba_examen" {
-  name = "prueba-examen"
+resource "azurerm_resource_group" "prueba" {
+  name = "prueba"
   location = "eastus2"
 }
