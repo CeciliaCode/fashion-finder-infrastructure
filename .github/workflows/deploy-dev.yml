@@ -75,7 +75,7 @@ jobs:
       - name: Terraform plan
         run: terraform -chdir=env/dev plan
       
-      # - name: Terraform apply
-      #   run: terraform -chdir=env/dev apply --auto-approve
+      - name: Terraform apply
+        run: terraform -chdir=env/dev apply --auto-approve
 
           
