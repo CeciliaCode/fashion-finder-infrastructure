@@ -24,7 +24,7 @@ module "dev_vm" {
   SUBNET_NAME = var.SUBNET_NAME
 }
 
-resource "azurerm_resource_group" "monomapceci" {
-  name = "monomapceci"
+resource "azurerm_resource_group" "monomapceci1" {
+  name = "monomapceci1"
   location = "eastus2"
 }
