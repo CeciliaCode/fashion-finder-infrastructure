@@ -7,8 +7,8 @@ services:
       - 80:80
       - 443:443
     environment:
-      - VIRTUAL_HOST =${DOMAIN}
-      - VIRTUAL_PATH = /.well-known
+      - VIRTUAL_HOST=${DOMAIN}
+      - VIRTUAL_PATH=/.well-known
     volumes:
       - /volumes/nginx/certs:/etc/nginx/certs
       - /volumes/nginx/vhostd:/etc/nginx/vhost.d
@@ -20,7 +20,7 @@ services:
     container_name: 'Lets-Encrypt'
     restart: always
     environment:
-      - NGINX_PROXY_CONTAINER = Reverse-Proxy
+      - NGINX_PROXY_CONTAINER=Reverse-Proxy
     volumes:
       - /volumes/nginx/certs:/etc/nginx/certs:ro
       - /volumes/nginx/vhostd:/etc/nginx/vhost.d
@@ -37,11 +37,12 @@ services:
       - MONGO_URL=${MONGO_URL} 
       - PORT=${PORT}
       - MONGO_DB=${MONGO_DB}
-      - MAIL_SECRET_KEY=${MAIL_SERVICE}
+      - MAIL_SECRET_KEY=${MAIL_SECRET_KEY}
+      - MAIL_SERVICE=${MAIL_SERVICE}
       - MAIL_USER=${MAIL_USER}
       - MAPBOX_ACCESS_TOKEN=${MAPBOX_ACCESS_TOKEN}
       - VIRTUAL_HOST=${DOMAIN}
-      - VIRTUAL-PATH=/
+      - VIRTUAL_PATH=/
       - LETSENCRYPT_HOST=${DOMAIN}
       - LETSENCRYPT_EMAIL=${MAIL_USER}
   

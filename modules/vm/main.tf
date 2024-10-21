@@ -9,7 +9,7 @@ resource "azurerm_resource_group" "IN_RG" {
 
 # Construir red virtual.
 resource "azurerm_virtual_network" "IN_VNET" {
-  name                = "${var.VNET_NAME} ${var.ENVIRONMENT}"
+  name                = "${var.VNET_NAME}_${var.ENVIRONMENT}"
   resource_group_name = azurerm_resource_group.IN_RG.name
   location            = var.LOCATION
   address_space       = ["10.123.0.0/16"]
@@ -20,7 +20,7 @@ resource "azurerm_virtual_network" "IN_VNET" {
 
 # Construir subred.
 resource "azurerm_subnet" "IN_SUBNET" {
-  name                 = "${var.SUBNET_NAME} ${var.ENVIRONMENT}"
+  name                 = "${var.SUBNET_NAME}_${var.ENVIRONMENT}"
   resource_group_name  = azurerm_resource_group.IN_RG.name
   virtual_network_name = azurerm_virtual_network.IN_VNET.name
   address_prefixes     = ["10.123.1.0/24"]
@@ -81,7 +81,7 @@ resource "azurerm_subnet_network_security_group_association" "IN_SGA" {
 
 # Crear IP pública.
 resource "azurerm_public_ip" "IN_IP" {
-  name                = "${var.IP_NAME} ${var.ENVIRONMENT}"
+  name                = "${var.IP_NAME}_${var.ENVIRONMENT}"
   resource_group_name = azurerm_resource_group.IN_RG.name
   location            = var.LOCATION
   allocation_method   = "Dynamic" # Ahorrar dinero.
@@ -107,7 +107,7 @@ resource "azurerm_network_interface" "IN_NIC" {
 
 # Crear máquina virtual.
 resource "azurerm_linux_virtual_machine" "IN_VM" {
-  name                  = "${var.SERVER_NAME}_${var.ENVIRONMENT}"
+  name                  = "${var.SERVER_NAME}-${var.ENVIRONMENT}"
   resource_group_name   = azurerm_resource_group.IN_RG.name
   location              = azurerm_resource_group.IN_RG.location
   size                  = "Standard_B2s"
@@ -151,6 +151,12 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
       "sudo su -c 'mkdir -p /volumes/nginx/certs'",
       "sudo su -c 'mkdir -p /volumes/nginx/vhostd'",
       "sudo su -c 'mkdir -p /volumes/nginx/data'",
+      "sudo su -c 'mkdir -p /volumes/mongo/data'",
+      "sudo su -c 'chmod 775 /volumes/nginx/html'",
+      "sudo su -c 'chmod 775 /volumes/nginx/certs'",
+      "sudo su -c 'chmod 775 /volumes/nginx/vhostd'",
+      "sudo su -c 'chmod 775 /volumes/nginx/data'",
+      "sudo su -c 'chmod 775 /etc/nginx/certs'",
       "sudo su -c 'chmod 770 /volumes/mongo/data'", # Dar permisos a archivo.
       "sudo su -c 'touch /home/${var.ADMIN_USERNAME}/.env'", # Crear archivo.
       "sudo su -c 'echo \"MONGO_URL=${var.MONGO_URL}\" >> /home/${var.ADMIN_USERNAME}/.env'", # Redireccionar para copiar variables al archivo previamente creado.
@@ -174,13 +180,13 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
   }
 }
 
-resource "time_sleep" "wait_2_minutes" {
+resource "time_sleep" "wait_3_minutes" {
   depends_on = [ azurerm_linux_virtual_machine.IN_VM ]
-  create_duration = "120s"
+  create_duration = "180s"
 }
 
 resource "null_resource" "init_docker" {
-  depends_on = [ time_sleep.wait_2_minutes ]
+  depends_on = [ time_sleep.wait_3_minutes ]
 
   connection {
     type = "ssh"
@@ -190,6 +196,15 @@ resource "null_resource" "init_docker" {
   }
 
   provisioner "remote-exec" {
-    inline = ["sudo su -c 'docker-compose up -d"]
-  }
+  inline = [
+    "sudo apt-get update -y",
+    "sudo apt-get install -y docker.io",
+    "sudo systemctl enable docker",
+    "sudo systemctl start docker",
+    "sudo curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
+    "sudo chmod +x /usr/local/bin/docker-compose",
+    "cd /home/${var.ADMIN_USERNAME}",
+    "sudo docker-compose up -d"
+  ]
+}
 }
