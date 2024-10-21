@@ -1,5 +1,7 @@
 # Infrastructure Deployment with Terraform, Docker, and GitHub Actions
 
+![Infrastructure](https://github.com/user-attachments/assets/4867082d-a38d-4f1a-bcb6-18eef948f178)
+
 ## Description
 
 This project deploys infrastructure in the cloud using Terraform, called MonoApp, which registers Monkeypox cases. It includes a virtual machine with the following containers: Nginx as a reverse proxy, Let’s Encrypt for SSL certificate management, the MonoMap API (available on Docker Hub), and MongoDB as the database. Additionally, the infrastructure deployment and destruction are automated using GitHub Actions, and the Terraform state is stored remotely in Azure Storage.
