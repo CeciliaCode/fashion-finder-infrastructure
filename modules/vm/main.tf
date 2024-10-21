@@ -71,18 +71,6 @@ resource "azurerm_network_security_group" "IN_SG" {
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
-
-  security_rule {
-    name                       = "sql-server-allow"
-    priority                   = 104
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "1433"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
-  }
 }
 
 # Crear asociación entre la subred y el grupo de seguridad.
@@ -159,7 +147,6 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
   provisioner "remote-exec" {
     inline = [ 
       "sudo su -c 'mkdir -p /home/${var.ADMIN_USERNAME}'",
-      "sudo su -c 'mkdir -p /ceci'",
       "sudo su -c 'mkdir -p /volumes/nginx/html'",
       "sudo su -c 'mkdir -p /volumes/nginx/certs'",
       "sudo su -c 'mkdir -p /volumes/nginx/vhostd'",
@@ -218,40 +205,9 @@ resource "null_resource" "init_docker" {
     "sudo chmod +x /usr/local/bin/docker-compose",
     "cd /home/${var.ADMIN_USERNAME}",
     "sudo docker-compose up -d"
-  ]
-}
-}
-
-resource "null_resource" "init_docke" {
-  depends_on = [ time_sleep.wait_3_minutes ]
-
-  connection {
-    type = "ssh"
-    user = "${var.ADMIN_USERNAME}"
-    private_key = file(var.SSH_KEY_PATH)
-    host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
-  }
-
-  provisioner "remote-exec" {
-  inline = [
-    "sudo su -c 'mkdir -p /ceci'"
-  ]
-}
-}
-
-resource "null_resource" "diaz" {
-  depends_on = [ time_sleep.wait_3_minutes ]
-
-  connection {
-    type = "ssh"
-    user = "${var.ADMIN_USERNAME}"
-    private_key = file(var.SSH_KEY_PATH)
-    host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
-  }
-
-  provisioner "remote-exec" {
-  inline = [
-    "sudo su 'touch /home/diaz.txt'"
+    /*"sudo su -c 'mkdir -p /ceci'"
+    "sudo su -c 'mkdir -p /melanie'"
+    "sudo su -c 'mkdir -p /diaZ'"*/
   ]
 }
 }
