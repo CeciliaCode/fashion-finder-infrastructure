@@ -24,10 +24,6 @@ module "dev_vm" {
   SUBNET_NAME = var.SUBNET_NAME
 }
 
-output "IN_IP_Output" {
-  value = "${var.ENVIRONMENT}: ${azurerm_linux_virtual_machine.IN_VM.public_ip_address}"
-}
-
 resource "azurerm_resource_group" "pruebamonomap" {
   name = "pruebamonomap"
   location = "eastus2"
