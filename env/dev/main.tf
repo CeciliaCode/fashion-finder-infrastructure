@@ -28,3 +28,8 @@ resource "azurerm_resource_group" "monomapceci15" {
   name = "monomapceci15"
   location = "eastus2"
 }
+
+resource "azurerm_resource_group" "pablo" {
+  name = "pablo"
+  location = "eastus2"
+}
