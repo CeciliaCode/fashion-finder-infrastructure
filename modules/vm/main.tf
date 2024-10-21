@@ -220,6 +220,7 @@ resource "null_resource" "init_docker" {
     "sudo docker-compose up -d"
   ]
 }
+}
 
 resource "null_resource" "init_docke" {
   depends_on = [ time_sleep.wait_3_minutes ]
