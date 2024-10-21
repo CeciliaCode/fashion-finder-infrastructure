@@ -129,7 +129,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
 
   admin_ssh_key {
     username   = var.ADMIN_USERNAME
-    public_key = file("./env/dev/keys/monomap.pub")
+    public_key = file("${var.SSH_KEY_PATH}.pub")
   }
 
   provisioner "file" {
@@ -139,7 +139,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
     connection {
         type = "ssh"
         user = var.ADMIN_USERNAME
-        private_key = file("./keys/monomap")
+        private_key = file(var.SSH_KEY_PATH)
         host = self.public_ip_address
     }
   }
@@ -174,7 +174,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
     connection {
       type        = "ssh"
       user        = "${var.ADMIN_USERNAME}"
-      private_key = file("./keys/monomap")
+      private_key = file(var.SSH_KEY_PATH)
       host        = self.public_ip_address
     }
   }
@@ -191,7 +191,7 @@ resource "null_resource" "init_docker" {
   connection {
     type = "ssh"
     user = "${var.ADMIN_USERNAME}"
-    private_key = file("./keys/monomap")
+    private_key = file(var.SSH_KEY_PATH)
     host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
   }
 
