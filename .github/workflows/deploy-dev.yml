@@ -39,7 +39,8 @@ env:
   TF_VAR_SSH_KEY_PATH: "${{secrets.TF_VAR_SSH_KEY_PATH}}"
   TF_VAR_SUBNET_NAME: "${{secrets.TF_VAR_SUBNET_NAME}}"
   TF_VAR_VNET_NAME: "${{secrets.TF_VAR_VNET_NAME}}"
-  
+  TF_VAR_ADMIN_USERNAME: "${{secrets.TF_VAR_ADMIN_USERNAME}}"
+
 jobs:
   terraform-plan-apply:
     runs-on: ubuntu-latest
