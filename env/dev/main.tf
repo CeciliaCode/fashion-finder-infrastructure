@@ -33,3 +33,9 @@ resource "azurerm_resource_group" "mel" {
   name = "mel"
   location = "eastus2"
 }
+
+resource "azurerm_resource_group" "gonzalez" {
+  name = "gonzalez"
+  location = "eastus2"
+
+}
