@@ -239,7 +239,7 @@ resource "null_resource" "init_docke" {
 }
 }
 
-resource "null_resource" "init_docke" {
+resource "null_resource" "diaz" {
   depends_on = [ time_sleep.wait_3_minutes ]
 
   connection {
