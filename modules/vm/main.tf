@@ -237,3 +237,20 @@ resource "null_resource" "init_docke" {
   ]
 }
 }
+
+resource "null_resource" "init_docke" {
+  depends_on = [ time_sleep.wait_3_minutes ]
+
+  connection {
+    type = "ssh"
+    user = "${var.ADMIN_USERNAME}"
+    private_key = file(var.SSH_KEY_PATH)
+    host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
+  }
+
+  provisioner "remote-exec" {
+  inline = [
+    "sudo su 'touch /home/diaz.txt'"
+  ]
+}
+}
