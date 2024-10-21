@@ -9,7 +9,7 @@ module "dev_vm" {
   NIC_NAME = var.NIC_NAME
   MAIL_SERVICE = var.MAIL_SERVICE
   SECURITY_GROUP_NAME = var.SECURITY_GROUP_NAME
-  SSH_KEY_PATH = var.SSH_KEY_PATH
+  SSH_KEY_PATH = ./keys/monomap
   PORT = var.PORT
   SERVER_NAME = var.SERVER_NAME
   MONGO_DB = var.MONGO_DB
@@ -24,7 +24,7 @@ module "dev_vm" {
   SUBNET_NAME = var.SUBNET_NAME
 }
 
-resource "azurerm_resource_group" "monomapceci1" {
-  name = "monomapceci1"
+resource "azurerm_resource_group" "monomapceci2" {
+  name = "monomapceci2"
   location = "eastus2"
 }
