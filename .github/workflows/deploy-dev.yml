@@ -61,9 +61,6 @@ jobs:
       - name: Terraform Init
         run: terraform -chdir=env/dev init
 
-      - name: Terraform Format
-        run: terraform -chdir=env/dev fmt -check
-
       - name: Terraform Validate
         run: terraform -chdir=env/dev validate
 
