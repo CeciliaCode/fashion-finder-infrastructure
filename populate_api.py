@@ -42,7 +42,7 @@ PRODUCTS = [
 def post_data(endpoint, data):
     url = f"{BASE_URL}{endpoint}"
     try:
-        response = requests.post(url, json=data, headers=HEADERS)
+        response = requests.post(url, json=data)
         response.raise_for_status()
         print(f"Success: {data}")
         return response.json()

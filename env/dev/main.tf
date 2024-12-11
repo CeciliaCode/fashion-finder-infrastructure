@@ -10,7 +10,7 @@ module "dev_vm" {
   NIC_NAME                   = var.NIC_NAME
   SERVER_NAME                = var.SERVER_NAME
   PORT                       = var.PORT
-  MONGODB_URI                = var.MONGODB_URI
+  MONGO_URI                  = var.MONGO_URI
   MONGO_INITDB_ROOT_USERNAME = var.MONGO_INITDB_ROOT_USERNAME
   MONGO_INITDB_ROOT_PASSWORD = var.MONGO_INITDB_ROOT_PASSWORD
   EMAIL_SERVICE              = var.EMAIL_SERVICE

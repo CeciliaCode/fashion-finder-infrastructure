@@ -147,7 +147,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
       "sudo su -c 'chmod 775 /volumes/nginx/vhostd'",
       "sudo su -c 'chmod 770 /volumes/mongo/data'",
       "sudo su -c 'touch /home/${var.ADMIN_USERNAME}/.env'", 
-      "sudo su -c 'echo \"MONGODB_URI=${var.MONGODB_URI}\" >> /home/${var.ADMIN_USERNAME}/.env'",
+      "sudo su -c 'echo \"MONGO_URI=${var.MONGO_URI}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"PORT=${var.PORT}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"EMAIL_SERVICE=${var.EMAIL_SERVICE}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"EMAIL_USER=${var.EMAIL_USER}\" >> /home/${var.ADMIN_USERNAME}/.env'",

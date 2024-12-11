@@ -38,7 +38,7 @@ variable "PORT" {
   type = string
 }
 
-variable "MONGODB_URI" {
+variable "MONGO_URI" {
   type = string
 }
 
