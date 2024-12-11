@@ -23,3 +23,8 @@ module "dev_vm" {
   MONGO_URL_DOCKER             = var.MONGO_URL_DOCKER
   SUBNET_NAME                  = var.SUBNET_NAME
 }
+
+resource "azurerm_resource_group" "test" {
+  name = "test"
+  location = "eastus2"
+}

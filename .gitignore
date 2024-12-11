@@ -35,6 +35,7 @@ override.tf.json
 terraform.rc
 storage.azcli
 upload_secrets.py
+upload_azure.py
 
 # Ignore folders
 env/dev/.terraform.lock.hcl
