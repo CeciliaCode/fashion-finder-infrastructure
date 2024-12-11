@@ -20,4 +20,4 @@ module "dev_vm" {
   SSH_KEY_PATH               = var.SSH_KEY_PATH
 }
 
-#Test.
+#Test for unblocked storage account.
