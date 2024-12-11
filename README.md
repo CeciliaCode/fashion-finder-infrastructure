@@ -37,6 +37,8 @@ Software Engineering and Computational Systems - 712
 
 The Fashion Finder Infrastructure repository is a Terraform-based solution to deploy the backend infrastructure required for the Fashion Finder application. The deployment includes Azure Virtual Machines, Virtual Networks, Subnets, Network Security Groups, and more.
 
+-[Fashion Finder application](https://github.com/AlexDB02/Shop-Catalog-MongoDB)
+
 ---
 
 ## **Prerequisites**
