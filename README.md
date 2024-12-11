@@ -82,7 +82,7 @@ This repository provisions the following resources in Azure:
 | `MONGO_INITDB_ROOT_PASSWORD` | MongoDB root password.                                    |
 | `EMAIL_SERVICE`              | Email service provider (e.g., `gmail`).                   |
 | `EMAIL_USER`                 | Email user account.                                       |
-| `EMAIL_PASS`                 | Email password.                                           |
+| `EMAIL_PASS`                 | Email access token.                                       |
 | `ADMIN_USERNAME`             | Admin username for the VM.                                |
 | `SSH_KEY_PATH`               | Path to the SSH private key.                              |
 
