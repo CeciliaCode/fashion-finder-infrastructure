@@ -39,4 +39,4 @@ upload_azure.py
 
 # Ignore folders
 env/dev/.terraform.lock.hcl
-env/dev/keys/
+
