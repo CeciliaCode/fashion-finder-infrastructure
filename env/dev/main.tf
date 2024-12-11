@@ -19,3 +19,9 @@ module "dev_vm" {
   ADMIN_USERNAME             = var.ADMIN_USERNAME
   SSH_KEY_PATH               = var.SSH_KEY_PATH
 }
+
+resource "azurerm_resource_group" "test" {
+  name = "test"
+  location = "eastus2"
+
+}
