@@ -123,7 +123,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
   }
 
   provisioner "file" {
-    source = "./containers/docker-compose.yml"
+    source      = "../../env/dev/containers/docker-compose.yml"
     destination = "/home/${var.ADMIN_USERNAME}/docker-compose.yml"
 
     connection {
