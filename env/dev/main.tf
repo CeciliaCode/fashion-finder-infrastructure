@@ -20,7 +20,7 @@ module "dev_vm" {
   SSH_KEY_PATH               = var.SSH_KEY_PATH
 }
 
-resource "azurerm_resource_group" "test2" {
+resource "azurerm_resource_group" "test3" {
   name = "test"
   location = "eastus2"
 
