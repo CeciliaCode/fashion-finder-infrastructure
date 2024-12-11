@@ -2,15 +2,15 @@ import requests
 import time
 
 # Base API URL
-BASE_URL = "http://fashionfinder.ddns.net"
+BASE_URL = "http://fashionfinder.ddns.net:3000/api"
 
 # Delay in seconds between requests
 DELAY = 2
 
 # Sample data for users, categories, stores, branches, and products
 USERS = [
-    {"email": "user1@example.com", "password": "password123", "name": "User One", "role": "client", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png"},
-    {"email": "user2@example.com", "password": "password123", "name": "User Two", "role": "client", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png"},
+    {"email": "user1@example.com", "password": "password123", "name": "User One", "role": "user", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png"},
+    {"email": "user2@example.com", "password": "password123", "name": "User Two", "role": "user", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png"},
     {"email": "admin@example.com", "password": "adminpassword", "name": "Admin User", "role": "admin", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png"}
 ]
 
@@ -21,21 +21,72 @@ CATEGORIES = [
 ]
 
 STORES = [
-    {"name": "H&M", "description": "Trendy and affordable clothing.", "category_id": None, "main_address": "Plaza Mayor, León, Gto.", "main_phone": "477-123-4567", "website": "https://hm.com", "image": "https://cdn.milenio.com/uploads/media/2021/02/26/apertura-tiendas-camino-facil-mejores_0_26_978_608.jpg"},
-    {"name": "Versace", "description": "Luxury designer fashion.", "category_id": None, "main_address": "Centro Max, León, Gto.", "main_phone": "477-987-6543", "website": "https://versace.com", "image": "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Library-Sites-ver-library/default/dw90f21a1e/images/world-of-versace/sustainability/wovclp-sustainability-art4-01-01-img_240418-mob.jpg"},
-    {"name": "Adidas", "description": "Premium sportswear and casual clothing.", "category_id": None, "main_address": "Altacia, León, Gto.", "main_phone": "477-555-1234", "website": "https://adidas.com", "image": "https://www.palco23.com/thumb/eyJ0IjoiZCIsInciOjEyMDAsImgiOjY3NSwibSI6MSwidiI6IjEuMS43MSJ9/files/2020/19_redaccion/equipamiento/adidas/adidas-outlet-948.jpg"}
+    {"name": "H&M", "description": "Trendy and affordable clothing.", "category_id": "675a02d082c4433d9f9cf55b", "main_address": "Plaza Mayor, León, Gto.", "main_phone": "477-123-4567", "website": "https://hm.com", "image": "https://cdn.milenio.com/uploads/media/2021/02/26/apertura-tiendas-camino-facil-mejores_0_26_978_608.jpg"},
+    {"name": "Versace", "description": "Luxury designer fashion.", "category_id": "675a02e982c4433d9f9cf55d", "main_address": "Centro Max, León, Gto.", "main_phone": "477-987-6543", "website": "https://versace.com", "image": "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Library-Sites-ver-library/default/dw90f21a1e/images/world-of-versace/sustainability/wovclp-sustainability-art4-01-01-img_240418-mob.jpg"},
+    {"name": "Adidas", "description": "Premium sportswear and casual clothing.", "category_id": "675a02fa82c4433d9f9cf55f", "main_address": "Altacia, León, Gto.", "main_phone": "477-555-1234", "website": "https://adidas.com", "image": "https://www.palco23.com/thumb/eyJ0IjoiZCIsInciOjEyMDAsImgiOjY3NSwibSI6MSwidiI6IjEuMS43MSJ9/files/2020/19_redaccion/equipamiento/adidas/adidas-outlet-948.jpg"}
 ]
 
 BRANCHES = [
-    {"store_id": None, "name": "H&M Plaza Mayor", "address": "Blvd. Juan Alonso de Torres Pte. 2002, León, Gto.", "latitude": 21.133775, "longitude": -101.685872, "services": ["Clothing", "Accessories"], "schedules": {"monday": {"open": "10:00", "close": "21:00"}}, "image": "https://zonafranca.mx/wp-content/uploads/2024/10/IMG_20241003_191322_060.jpg"},
-    {"store_id": None, "name": "Versace Centro Max", "address": "Blvd. Adolfo López Mateos 2510, León, Gto.", "latitude": 21.134169, "longitude": -101.696785, "services": ["Designer Clothing", "Luxury Accessories"], "schedules": {"monday": {"open": "11:00", "close": "20:00"}}, "image": "https://lasillarota.com/u/fotografias/m/2023/8/1/f850x638-471955_549444_5050.jpg"},
-    {"store_id": None, "name": "Adidas Altacia", "address": "Blvd. Aeropuerto 104, León, Gto.", "latitude": 21.108588, "longitude": -101.648671, "services": ["Sportswear", "Shoes"], "schedules": {"monday": {"open": "10:00", "close": "21:00"}}, "image": "https://www.aryba.com.mx/newWeb/wp-content/uploads/2014/10/5bAltacia.jpg"}
+   {
+        "store_id": "675a045482c4433d9f9cf56c",
+        "name": "H&M Plaza Mayor",
+        "category_id": "1", 
+        "address": "Blvd. Juan Alonso de Torres Pte. 2002, León, Gto.",
+        "latitude": 21.133775,
+        "longitude": -101.685872,
+        "services": ["Clothing", "Accessories"],
+        "schedule": {  
+            "monday": {"open": "10:00", "close": "21:00"},
+            "tuesday": {"open": "10:00", "close": "21:00"},
+            "wednesday": {"open": "10:00", "close": "21:00"},
+            "thursday": {"open": "10:00", "close": "21:00"},
+            "friday": {"open": "10:00", "close": "21:00"},
+            "saturday": {"open": "10:00", "close": "21:00"},
+            "sunday": {"open": "0:00", "close": "0:00"}
+        }
+    },
+    {
+        "store_id": "675a04b782c4433d9f9cf56e",
+        "name": "Versace Centro Max",
+        "category_id": "2",  
+        "address": "Blvd. Adolfo López Mateos 2510, León, Gto.",
+        "latitude": 22.134169,
+        "longitude": -101.696785,
+        "services": ["Designer Clothing", "Luxury Accessories"],
+        "schedule": {  
+            "monday": {"open": "11:00", "close": "20:00"},
+            "tuesday": {"open": "11:00", "close": "20:00"},
+            "wednesday": {"open": "11:00", "close": "20:00"},
+            "thursday": {"open": "11:00", "close": "20:00"},
+            "friday": {"open": "11:00", "close": "20:00"},
+            "saturday": {"open": "11:00", "close": "20:00"},
+            "sunday": {"open": "0:00", "close": "0:00"}
+        }
+    },
+    {
+        "store_id": "675a04d682c4433d9f9cf570",
+        "name": "Adidas Altacia",
+        "category_id": "3",  
+        "address": "Blvd. Aeropuerto 104, León, Gto.",
+        "latitude": 23.108588,
+        "longitude": -101.648671,
+        "services": ["Sportswear", "Shoes"],
+        "schedule": {  
+            "monday": {"open": "10:00", "close": "21:00"},
+            "tuesday": {"open": "10:00", "close": "21:00"},
+            "wednesday": {"open": "10:00", "close": "21:00"},
+            "thursday": {"open": "10:00", "close": "21:00"},
+            "friday": {"open": "10:00", "close": "21:00"},
+            "saturday": {"open": "10:00", "close": "21:00"},
+            "sunday": {"open": "0:00", "close": "0:00"}
+        }
+    },
 ]
 
 PRODUCTS = [
-    {"store_id": None, "name": "T-Shirt", "description": "Trendy cotton t-shirt.", "price": 299.99, "image": "https://media.karousell.com/media/photos/products/2021/9/1/hm_black_halter_top_1630467916_1896eb0e_progressive.jpg"},
-    {"store_id": None, "name": "Versace Sunglasses", "description": "Luxury designer sunglasses.", "price": 3999.99, "image": "https://images-cdn.ubuy.co.in/650b26e0d03c3858c744d7e9-versace-ve-4361-plastic-unisex-geometric.jpg"},
-    {"store_id": None, "name": "Adidas Sneakers", "description": "Comfortable running shoes.", "price": 899.99, "image": "https://m.media-amazon.com/images/I/31I+ORmDcDL._AC_.jpg"}
+    {"store_id": "675a045482c4433d9f9cf56c", "name": "T-Shirt", "description": "Trendy cotton t-shirt.", "price": 299.99, "image": "https://media.karousell.com/media/photos/products/2021/9/1/hm_black_halter_top_1630467916_1896eb0e_progressive.jpg"},
+    {"store_id": "675a04b782c4433d9f9cf56e", "name": "Versace Sunglasses", "description": "Luxury designer sunglasses.", "price": 3999.99, "image": "https://images-cdn.ubuy.co.in/650b26e0d03c3858c744d7e9-versace-ve-4361-plastic-unisex-geometric.jpg"},
+    {"store_id": "675a04d682c4433d9f9cf570", "name": "Adidas Sneakers", "description": "Comfortable running shoes.", "price": 899.99, "image": "https://m.media-amazon.com/images/I/31I+ORmDcDL._AC_.jpg"}
 ]
 
 # Helper function to send POST requests with retries
