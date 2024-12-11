@@ -34,11 +34,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 storage.azcli
-
-# Ignore images
-Infrastructure.png
+upload_secrets.py
 
 # Ignore folders
-/legacy/
 env/dev/.terraform.lock.hcl
 env/dev/keys/
