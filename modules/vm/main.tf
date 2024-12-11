@@ -97,6 +97,7 @@ resource "azurerm_network_interface" "IN_NIC" {
   }
 }
 
+# Crear máquina virtual.
 resource "azurerm_linux_virtual_machine" "IN_VM" {
   name                  = "${var.SERVER_NAME}-${var.ENVIRONMENT}"
   resource_group_name   = azurerm_resource_group.IN_RG.name
@@ -104,6 +105,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
   size                  = "Standard_B2s"
   admin_username        = var.ADMIN_USERNAME
   network_interface_ids = [azurerm_network_interface.IN_NIC.id]
+  custom_data           = filebase64("${path.module}/scripts/docker-install.tpl")
 
   os_disk {
     caching              = "ReadWrite"
@@ -123,7 +125,7 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
   }
 
   provisioner "file" {
-    source      = "../../env/dev/containers/docker-compose.yml"
+    source = "./containers/docker-compose.yml"
     destination = "/home/${var.ADMIN_USERNAME}/docker-compose.yml"
 
     connection {
@@ -136,23 +138,59 @@ resource "azurerm_linux_virtual_machine" "IN_VM" {
 
   provisioner "remote-exec" {
     inline = [ 
-      "sudo su -c 'mkdir -p /home/${var.ADMIN_USERNAME}'",
+      "sudo su -c 'mkdir -p /volumes/nginx/html'",
+      "sudo su -c 'mkdir -p /volumes/nginx/certs'",
+      "sudo su -c 'mkdir -p /volumes/nginx/vhostd'",
       "sudo su -c 'mkdir -p /volumes/mongo/data'",
-      "sudo su -c 'chmod 770 /volumes/mongo/data'", 
+      "sudo su -c 'chmod 775 /volumes/nginx/html'",
+      "sudo su -c 'chmod 775 /volumes/nginx/certs'",
+      "sudo su -c 'chmod 775 /volumes/nginx/vhostd'",
+      "sudo su -c 'chmod 770 /volumes/mongo/data'",
       "sudo su -c 'touch /home/${var.ADMIN_USERNAME}/.env'", 
-      "sudo su -c 'echo \"PORT=${var.PORT}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"MONGODB_URI=${var.MONGODB_URI}\" >> /home/${var.ADMIN_USERNAME}/.env'",
+      "sudo su -c 'echo \"PORT=${var.PORT}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"EMAIL_SERVICE=${var.EMAIL_SERVICE}\" >> /home/${var.ADMIN_USERNAME}/.env'",
       "sudo su -c 'echo \"EMAIL_USER=${var.EMAIL_USER}\" >> /home/${var.ADMIN_USERNAME}/.env'",
-      "sudo su -c 'echo \"EMAIL_PASS=${var.EMAIL_PASS}\" >> /home/${var.ADMIN_USERNAME}/.env'"
+      "sudo su -c 'echo \"EMAIL_PASS=${var.EMAIL_PASS}\" >> /home/${var.ADMIN_USERNAME}/.env'",
+      "sudo su -c 'echo \"MONGO_INITDB_ROOT_USERNAME=${var.MONGO_INITDB_ROOT_USERNAME}\" >> /home/${var.ADMIN_USERNAME}/.env'",
+      "sudo su -c 'echo \"MONGO_INITDB_ROOT_PASSWORD=${var.MONGO_INITDB_ROOT_PASSWORD}\" >> /home/${var.ADMIN_USERNAME}/.env'"
     ]
 
     connection {
       type        = "ssh"
-      user        = "${var.ADMIN_USERNAME}"
+      user        = var.ADMIN_USERNAME
       private_key = file(var.SSH_KEY_PATH)
       host        = self.public_ip_address
     }
+  }
+}
+
+resource "time_sleep" "wait_3_minutes" {
+  depends_on = [ azurerm_linux_virtual_machine.IN_VM ]
+  create_duration = "180s"
+}
+
+resource "null_resource" "init_docker" {
+  depends_on = [ time_sleep.wait_3_minutes ]
+
+  connection {
+    type = "ssh"
+    user = var.ADMIN_USERNAME
+    private_key = file(var.SSH_KEY_PATH)
+    host = azurerm_linux_virtual_machine.IN_VM.public_ip_address
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update -y",
+      "sudo apt-get install -y docker.io",
+      "sudo systemctl enable docker",
+      "sudo systemctl start docker",
+      "sudo curl -L \"https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)\" -o /usr/local/bin/docker-compose",
+      "sudo chmod +x /usr/local/bin/docker-compose",
+      "cd /home/${var.ADMIN_USERNAME}",
+      "sudo docker-compose up -d"
+    ]
   }
 }
 
