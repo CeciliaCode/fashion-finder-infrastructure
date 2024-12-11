@@ -12,6 +12,8 @@ services:
       - EMAIL_PASS=${EMAIL_PASS}
     ports:
       - "3000:3000"
+    expose:
+      - "3000"
     depends_on:
       - mongo
       - reverse-proxy
@@ -52,6 +54,8 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     ports:
       - "27017:27017"
+    expose:
+      - "27017"
     volumes:
       - /volumes/mongo/data:/data/db
 
