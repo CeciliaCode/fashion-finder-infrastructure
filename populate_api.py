@@ -132,3 +132,48 @@ PRODUCTS = [
     {"store_id": "675a955eb13cd4dae97bfc12", "name": "Lentes Versace", "description": "Gafas de sol.", "price": 3999.99, "image": "https://images-cdn.ubuy.co.in/650b26e0d03c3858c744d7e9-versace-ve-4361-plastic-unisex-geometric.jpg"},
     {"store_id": "675a9597b13cd4dae97bfc14", "name": "Sneakers", "description": "Calzado para correr.", "price": 899.99, "image": "https://m.media-amazon.com/images/I/31I+ORmDcDL._AC_.jpg"}
 ]
+
+MOREPRODUCTS = [
+    {
+        "store_id": "675a9530b13cd4dae97bfc10",
+        "name": "Falda plisada",
+        "description": "Falda de algodón con diseño plisado.",
+        "price": 249.99,
+        "image": "https://m.media-amazon.com/images/I/41RWv5E7sML._AC_SY580_.jpg"
+    },
+    {
+        "store_id": "675a9530b13cd4dae97bfc10",
+        "name": "Chaqueta denim",
+        "description": "Chaqueta corta de mezclilla.",
+        "price": 599.99,
+        "image": "https://m.media-amazon.com/images/I/5144GiOKVEL._AC_.jpg"
+    },
+    {
+        "store_id": "675a955eb13cd4dae97bfc12",
+        "name": "Reloj Versace",
+        "description": "Reloj de lujo para hombre.",
+        "price": 14999.99,
+        "image": "https://m.media-amazon.com/images/I/717eVTmVQ-L._AC_SX522_.jpg"
+    },
+    {
+        "store_id": "675a955eb13cd4dae97bfc12",
+        "name": "Bolsa Versace",
+        "description": "Bolsa de mano elegante.",
+        "price": 12999.99,
+        "image": "https://m.media-amazon.com/images/I/71nf5J0pNIL._AC_UF894,1000_QL80_.jpg"
+    },
+    {
+        "store_id": "675a9597b13cd4dae97bfc14",
+        "name": "Calcetas deportivas",
+        "description": "Par de calcetas de compresión para correr.",
+        "price": 149.99,
+        "image": "https://m.media-amazon.com/images/I/41VcFBOEHFL._AC_.jpg"
+    },
+    {
+        "store_id": "675a9597b13cd4dae97bfc14",
+        "name": "Sudadera deportiva",
+        "description": "Sudadera con capucha y diseño ligero.",
+        "price": 599.99,
+        "image": "https://m.media-amazon.com/images/I/81ekyC-exDL._AC_UF894,1000_QL80_.jpg"
+    }
+]
