@@ -11,16 +11,16 @@ CATEGORIES = [
 ]
 
 STORES = [
-    {"name": "H&M", "description": "Ropa en tendencia.", "category_id": "675a02d082c4433d9f9cf55b", "main_address": "Plaza Mayor, León, Gto.", "main_phone": "800-040-8555", "website": "https://www2.hm.com/es_mx/", "image": "https://media.fashionnetwork.com/cdn-cgi/image/format=auto/m/3119/9a5d/6f3d/f577/4a55/e329/ad41/7f26/a7be/c2de/c2de.png"},
-    {"name": "Versace", "description": "Ropa lujosa.", "category_id": "675a02e982c4433d9f9cf55d", "main_address": "Centro Max, León, Gto.", "main_phone": "477-771-7361", "website": "https://www.versace.com/mx/es/", "image": "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Library-Sites-ver-library/default/dw90f21a1e/images/world-of-versace/sustainability/wovclp-sustainability-art4-01-01-img_240418-mob.jpg"},
-    {"name": "Adidas", "description": "Atuendo para el ejercicio.", "category_id": "675a02fa82c4433d9f9cf55f", "main_address": "Altacia, León, Gto.", "main_phone": "669-915-5300", "website": "https://www.adidas.mx/", "image": "https://sucursales.net/wp-content/uploads/2022/01/adidas-Leon.jpg"}
+    {"name": "H&M", "description": "Ropa en tendencia.", "category_id": "675a9499b13cd4dae97bfc0a", "main_address": "Plaza Mayor, León, Gto.", "main_phone": "800-040-8555", "website": "https://www2.hm.com/es_mx/", "image": "https://media.fashionnetwork.com/cdn-cgi/image/format=auto/m/3119/9a5d/6f3d/f577/4a55/e329/ad41/7f26/a7be/c2de/c2de.png"},
+    {"name": "Versace", "description": "Ropa lujosa.", "category_id": "675a94c6b13cd4dae97bfc0c", "main_address": "Centro Max, León, Gto.", "main_phone": "477-771-7361", "website": "https://www.versace.com/mx/es/", "image": "https://www.versace.com/dw/image/v2/BGWN_PRD/on/demandware.static/-/Library-Sites-ver-library/default/dw90f21a1e/images/world-of-versace/sustainability/wovclp-sustainability-art4-01-01-img_240418-mob.jpg"},
+    {"name": "Adidas", "description": "Atuendo para el ejercicio.", "category_id": "675a94f4b13cd4dae97bfc0e", "main_address": "Altacia, León, Gto.", "main_phone": "669-915-5300", "website": "https://www.adidas.mx/", "image": "https://sucursales.net/wp-content/uploads/2022/01/adidas-Leon.jpg"}
 ]
 
 BRANCHES = [
    {
-        "store_id": "675a045482c4433d9f9cf56c",
+        "store_id": "675a9530b13cd4dae97bfc10",
         "name": "H&M Sucursal Plaza Mayor",
-        "category_id": "675a02d082c4433d9f9cf55b", 
+        "category_id": "675a9499b13cd4dae97bfc0a", 
         "address": "Blvd. Juan Alonso de Torres 2002-Local 136, Centro Comercial, 37150 León de los Aldama, Gto.",
         "latitude": 21.162817087255277,
         "longitude": -101.69400990548503,
@@ -36,9 +36,9 @@ BRANCHES = [
         }
     },
     {
-        "store_id": "675a045482c4433d9f9cf56c",
+        "store_id": "675a9530b13cd4dae97bfc10",
         "name": "H&M Sucursal Aeropuerto",
-        "category_id": "675a02d082c4433d9f9cf55b", 
+        "category_id": "675a9499b13cd4dae97bfc0a", 
         "address": "Blvd. Aeropuerto #104 Local L-1002, 37545 León de los Aldama, Gto.",
         "latitude": 21.096527387122183,
         "longitude": -101.62397206390762,
@@ -54,9 +54,9 @@ BRANCHES = [
         }
     },
     {
-        "store_id": "675a04b782c4433d9f9cf56e",
+        "store_id": "675a955eb13cd4dae97bfc12",
         "name": "Versace Sucursal Centro Max",
-        "category_id": "675a02e982c4433d9f9cf55d",  
+        "category_id": "675a94c6b13cd4dae97bfc0c",  
         "address": "Blvd. Adolfo López Mateos 2518, Jardines de Jerez, 37530 León de los Aldama, Gto.",
         "latitude": 21.100178206458992,
         "longitude": -101.63575481398323,
@@ -72,9 +72,9 @@ BRANCHES = [
         }
     },
       {
-        "store_id": "675a04b782c4433d9f9cf56e",
+        "store_id": "675a955eb13cd4dae97bfc12",
         "name": "Versace Sucursal Palacio de Hierro",
-        "category_id": "675a02e982c4433d9f9cf55d",  
+        "category_id": "675a94c6b13cd4dae97bfc0c",  
         "address": "Cerro Gordo, Blvd. Casa de Piedra esquina, Centro Comercial, 37150 León de los Aldama, Gto.",
         "latitude": 21.15730465952265,
         "longitude": -101.69709943323541,
@@ -90,9 +90,9 @@ BRANCHES = [
         }
     },
     {
-        "store_id": "675a04d682c4433d9f9cf570",
+        "store_id": "675a9597b13cd4dae97bfc14",
         "name": "Adidas Sucursal Altacia",
-        "category_id": "675a02fa82c4433d9f9cf55f",  
+        "category_id": "675a94f4b13cd4dae97bfc0e",  
         "address": "Blvd. Aeropuerto 104, Cerrito de Jerez, 37545 León de los Aldama, Gto.",
         "latitude": 21.092893510408114,
         "longitude": -101.62607016233643,
@@ -108,9 +108,9 @@ BRANCHES = [
         }
     },
     {
-        "store_id": "675a04d682c4433d9f9cf570",
+        "store_id": "675a9597b13cd4dae97bfc14",
         "name": "Adidas Sucursal Plaza Mayor",
-        "category_id": "675a02fa82c4433d9f9cf55f",  
+        "category_id": "675a94f4b13cd4dae97bfc0e",  
         "address": "Plaza Mayor, Blvd. Juan Alonso de Torres Pte. 2002, Centro Comercial, 37150 León de los Aldama, Gto.",
         "latitude":  21.158922066146232,
         "longitude": -101.69613149264613,
@@ -128,7 +128,7 @@ BRANCHES = [
 ]
 
 PRODUCTS = [
-    {"store_id": "675a045482c4433d9f9cf56c", "name": "Playera halter", "description": "Top cropped de algodón.", "price": 199.99, "image": "https://media.karousell.com/media/photos/products/2021/9/1/hm_black_halter_top_1630467916_1896eb0e_progressive.jpg"},
-    {"store_id": "675a04b782c4433d9f9cf56e", "name": "Lentes Versace", "description": "Gafas de sol.", "price": 3999.99, "image": "https://images-cdn.ubuy.co.in/650b26e0d03c3858c744d7e9-versace-ve-4361-plastic-unisex-geometric.jpg"},
-    {"store_id": "675a04d682c4433d9f9cf570", "name": "Sneakers", "description": "Calzado para correr.", "price": 899.99, "image": "https://m.media-amazon.com/images/I/31I+ORmDcDL._AC_.jpg"}
+    {"store_id": "675a9530b13cd4dae97bfc10", "name": "Playera halter", "description": "Top cropped de algodón.", "price": 199.99, "image": "https://media.karousell.com/media/photos/products/2021/9/1/hm_black_halter_top_1630467916_1896eb0e_progressive.jpg"},
+    {"store_id": "675a955eb13cd4dae97bfc12", "name": "Lentes Versace", "description": "Gafas de sol.", "price": 3999.99, "image": "https://images-cdn.ubuy.co.in/650b26e0d03c3858c744d7e9-versace-ve-4361-plastic-unisex-geometric.jpg"},
+    {"store_id": "675a9597b13cd4dae97bfc14", "name": "Sneakers", "description": "Calzado para correr.", "price": 899.99, "image": "https://m.media-amazon.com/images/I/31I+ORmDcDL._AC_.jpg"}
 ]
